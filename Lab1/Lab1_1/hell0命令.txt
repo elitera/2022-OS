@@ -1,0 +1,8 @@
+sudo apt-get install bochs
+sudo apt-get install libsdl2-dev
+sudo apt install nasm
+sudo apt install nasm bochs-sdl
+bximage
+nasm boot.asm -o boot.bin
+dd if=boot.bin of=a.img bs=512 count=1 conv=notrunc
+bochs -f bochsrc
