@@ -90,7 +90,7 @@ PUBLIC int kernel_main()
 	init_semophore(&max_reader,1);   //同时读书的最大读者数量，1、2、3
 	readcount=0;
 	writercount=0;
-	priority=2;				//优先级：0-读者优先，1-写者优先，2-公平竞争
+	priority=0;				//优先级：0-读者优先，1-写者优先，2-公平竞争
 
 	//当前进程赋值
 	p_proc_ready	= proc_table;
@@ -119,16 +119,6 @@ PUBLIC int kernel_main()
 				∗ E写消耗3个时间片
 				∗ F写消耗4个时间片
  *======================================================================*/
-
-// void A_Reader(){Reader("A",0x09,2);}
-
-// void B_Reader(){Reader("B",0x0A,3);}
-
-// void C_Reader(){Reader("C",0x0C,3);}
-
-// void D_Writer(){Writer("D",0x0D,3);}
-
-// void E_Writer(){Writer("E",0x0E,4);}
 int count = 1;
 
 void A_Process(){
@@ -169,16 +159,6 @@ void A_Process(){
 			my_disp_str("\n",0x0F);
 		}
 		count++;
-		// if(readcount>0){
-		// 	char ch[2];
-		// 	ch[0]=reader_num+'0';		//readcount是运行进程数+阻塞进程数
-		// 	ch[1]='\0';
-		// 	my_disp_str(ch,0x0F);
-		// 	my_disp_str(" Read ;   ",0x0F);
-		// }
-		// if(readcount==0 && writercount>0){			//只有当readcount==0时wmutex才会被打开
-		// 	my_disp_str("Write ;   ",0x0F);
-		// }
 		my_milli_seconds(time_piece);
 	}
 }

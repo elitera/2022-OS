@@ -18,27 +18,6 @@
  *======================================================================*/
 PUBLIC void schedule()
 {
-	// //优先级调度
-	// PROCESS* p;
-	// int	 greatest_ticks = 0;		//最大的可中断次数
-
-	// while (!greatest_ticks) {
-	// 	//选择ticks最大的进程执行
-	// 	//disp_str(greatest_ticks);
-	// 	for (p = proc_table; p < proc_table+NR_TASKS; p++) {
-	// 		if (p->ticks > greatest_ticks) {
-	// 			greatest_ticks = p->ticks;
-	// 			p_proc_ready = p;
-	// 		}
-	// 	}
-	// 	//如果ticks全为0，则重新把各自的优先数赋值给各自的ticks
-	// 	if (!greatest_ticks) {
-	// 		for (p = proc_table; p < proc_table+NR_TASKS; p++) {
-	// 			p->ticks = p->priority;
-	// 		}
-	// 	}
-	// }
-
 	//时间片轮转调度，如果下一进程睡眠或者处于阻塞状态就跳过，向后轮询
 	while (1){
 		int t = get_ticks();	//当前总中断次数
